@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Logo pada title -->
   <link rel="icon" href="dist/img/autorent.png">
-  <title>Login AutoRent</title>
+  <title>Login | AutoRent</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,20 +15,22 @@
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Sweetalert -->
+  <script src="dist/js/sweetalert2.all.min.js"></script>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-orange">
     <div class="card-header text-center bg-gray-light">
-      <a href="#" class="h1">Auto<b>Rent</b></a>
+      <a href="landing_erentalcar.html" class="h1">Auto<b class="text-orange">Rent</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form id="quickForm" action="" method="post">
+      <form id="quickForm">
         <div class="input-group mb-3 form-group">
-          <input type="text" class="form-control" placeholder="Id" name="id">
+          <input type="text" class="form-control" placeholder="Id" name="id" id="id">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -36,7 +38,7 @@
           </div>
         </div>
         <div class="input-group mb-3 form-group">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Password" name="password" id="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -54,7 +56,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <input type="submit" class="btn btn-primary btn-block" value="Sign In"></input>
           </div>
           <!-- /.col -->
         </div>
@@ -99,14 +101,27 @@
   $(function () {
     $.validator.setDefaults({
       submitHandler: function () {
-        alert( "Form successful submitted!" );
+        var id = $('#id').val();
+        var password = $('#password').val();
+        if (id === 'ahmadadmin' && password === '123123123') {
+              alert('Login Berhasil!');
+              window.location.href = 'tambah_kendaraan.html';
+            }else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops. You Forget Your ID & PASSWORD',
+                text: 'ID = ahmadadmin PASSWORD = 123123123',
+              })
+              $('#id').val('');
+              $('#password').val('');
+              $('#id').focus();
+            }
       }
     });
     $('#quickForm').validate({
       rules: {
         id: {
           required: true,
-          id: true,
         },
         password: {
           required: true,
@@ -116,7 +131,6 @@
       messages: {
         id: {
           required: "Please enter an id",
-          id: "Please enter a valid id"
         },
         password: {
           required: "Please provide an password",

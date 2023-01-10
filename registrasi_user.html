@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Logo pada title -->
   <link rel="icon" href="dist/img/autorent.png">
-  <title>Registrasi AutoRent</title>
+  <title>Registrasi | AutoRent</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,12 +20,12 @@
 <div class="register-box">
   <div class="card card-outline card-orange">
     <div class="card-header text-center bg-gray-light">
-      <a href="#" class="h1">Auto<b>Rent</b></a>
+      <a href="landing_erentalcar.html" class="h1">Auto<b class="text-orange">Rent</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register a new account</p>
 
-      <form id="quickForm" action="#" method="post" onsubmit="return validate()">
+      <form id="quickForm" onsubmit="validate()">
         <div class="input-group mb-3 form-group">
           <input type="text" class="form-control" placeholder="Full name" name="id">
           <div class="input-group-append">
@@ -84,7 +84,9 @@
           <i class="fab fa-google-plus mr-2"></i>
           Sign up using Google+
         </a>
-        <a href="login_user.html">I already have an account</a>
+        <div class="mt-2 mb-0">
+          <a href="login_user.html">I already have an account</a>
+        </div>
       </div>
     </div>
     <footer class="main-footer text-center m-0 bg-gray-light">
@@ -109,7 +111,8 @@
   $(function () {
     $.validator.setDefaults({
       submitHandler: function () {
-        alert( "Form successful submitted!" );
+        alert( "Registration successful!" );
+        window.location.href = 'login_user.html';
       }
     });
     $('#quickForm').validate({
@@ -120,7 +123,6 @@
         },
         id: {
           required: true,
-          id: true,
         },
         password: {
           required: true,
